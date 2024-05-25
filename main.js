@@ -1,7 +1,7 @@
 import { Telegraf, Markup } from 'telegraf'
 
 const token = '7021232721:AAECkvfFkObSnQ80YgOrS7x8SyjEadb2u64'
-const webAppUrl = 'https://binotgbot.web.app'
+    const webAppUrl = 'https://binomo-bot-f4083.web.app'
 
 const bot = new Telegraf(token)
 
