@@ -1,0 +1,7 @@
+services:
+  api:
+    container_name: back-app
+    build:
+      context: ./back
+      dockerfile: Dockerfile
+    restart: always

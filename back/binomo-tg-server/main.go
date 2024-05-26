@@ -1,7 +1,7 @@
 package main
 
 import (
-	"binomo_bot/config"
+	"binomo-tg-server/config"
 	"encoding/json"
 	"github.com/joho/godotenv"
 	"log"
