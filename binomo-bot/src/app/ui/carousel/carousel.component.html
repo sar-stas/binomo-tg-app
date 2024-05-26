@@ -1,0 +1,110 @@
+<!--1 Page-->
+<div *ngIf="currentSlide === 0" class="wrapper">
+  <h3 class="sub-title text-center">Smart trading assistant</h3>
+  <span class="about-us-text"> {{ 'HELLO' | translate }} Register and get $10,000 on a demo account for learning to trade</span>
+
+  <div class="container-img mt-3">
+    <img width="291" src="assets/img/welcome1.png" alt="mobile-binomo-app">
+
+    <div class="container-btn absolute">
+      <div class="pagination">
+        <svg width="11" height="11">
+          <use xlink:href="/assets/img/icon.svg#circle-yellow"></use>
+        </svg>
+        <svg width="11" height="11">
+          <use xlink:href="/assets/img/icon.svg#circle-grey"></use>
+        </svg>
+        <svg width="11" height="11">
+          <use xlink:href="/assets/img/icon.svg#circle-grey"></use>
+        </svg>
+      </div>
+
+      <button class="btn" (click)="nextSlide()">Continue</button>
+    </div>
+
+  </div>
+</div>
+
+<!--2 Page-->
+<div *ngIf="currentSlide === 1" class="wrapper">
+  <h3 class="sub-title text-center">User Testimonials</h3>
+  <span class="about-us-text">Join the Binomo community today and start your journey towards trading excellence!</span>
+
+  <div class="container-img mt-3">
+    <img width="291" src="assets/img/welcome2.png" alt="mobile-binomo-app">
+
+    <div class="container-btn absolute">
+      <div class="pagination">
+        <svg width="11" height="11">
+          <use xlink:href="/assets/img/icon.svg#circle-grey"></use>
+        </svg>
+        <svg width="11" height="11">
+          <use xlink:href="/assets/img/icon.svg#circle-yellow"></use>
+        </svg>
+        <svg width="11" height="11">
+          <use xlink:href="/assets/img/icon.svg#circle-grey"></use>
+        </svg>
+      </div>
+
+      <button class="btn" (click)="nextSlide()">Continue</button>
+    </div>
+
+  </div>
+</div>
+
+<!--3 Page-->
+<div *ngIf="currentSlide === 2" class="wrapper">
+  <div class="container-img">
+
+    <div class="d-flex flex-column step-container" style="height: 291px">
+      <div class="step">
+        <svg width="51" height="51">
+          <use xlink:href="/assets/img/icon.svg#1-step"></use>
+        </svg>
+
+        <div class="step__content">
+          <h3 class="step__sub-title">Sign up</h3>
+          <span class="about-us-text">Open an account for free in just a few minutes</span>
+        </div>
+      </div>
+
+      <div class="step">
+        <svg width="51" height="51">
+          <use xlink:href="/assets/img/icon.svg#2-step"></use>
+        </svg>
+
+        <div class="step__content">
+          <h3 class="step__sub-title">Practice</h3>
+          <span class="about-us-text">Get your skills better with <br> a demo account and training materials</span>
+        </div>
+      </div>
+
+      <div class="step">
+        <svg width="51" height="51">
+          <use xlink:href="/assets/img/icon.svg#3-step"></use>
+        </svg>
+        <div class="step__content">
+          <h3 class="step__sub-title">Deposit and trade</h3>
+          <span class="about-us-text">Over 410 instruments and a minimum deposit of $5 for optimal trading</span>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="container-btn absolute">
+      <div class="pagination">
+        <svg width="11" height="11">
+          <use xlink:href="/assets/img/icon.svg#circle-grey"></use>
+        </svg>
+        <svg width="11" height="11">
+          <use xlink:href="/assets/img/icon.svg#circle-grey"></use>
+        </svg>
+        <svg width="11" height="11">
+          <use xlink:href="/assets/img/icon.svg#circle-yellow"></use>
+        </svg>
+      </div>
+
+      <button class="btn" (click)="nextSlide()">Start</button>
+    </div>
+  </div>
+</div>
