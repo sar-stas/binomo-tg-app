@@ -1,0 +1,25 @@
+.header {
+  height: 38px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 17px;
+  letter-spacing: -0.02em;
+  text-align: center;
+  color: #FFFFFF;
+  margin-top: 5px;
+  margin-bottom: 24px;
+}
+
+.logo {
+  position: absolute;
+  top: calc(50% - 100px);
+  left: calc(50% - 50px);
+  z-index: 5;
+}
+
+.loading {
+  pointer-events: none;
+}

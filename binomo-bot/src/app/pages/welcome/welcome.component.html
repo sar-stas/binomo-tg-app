@@ -1,0 +1,16 @@
+<div class="ts-wrapper-app" [ngClass]="{'loading':isLoading}">
+  <h1 class="header">Binomo</h1>
+
+  <ng-content></ng-content>
+  <ng-container *ngIf="isLoading; else welcomeTmpl">
+    <div class="logo">
+      <svg width="101">
+        <use xlink:href="/assets/img/icon.svg#preload"></use>
+      </svg>
+    </div>
+  </ng-container>
+
+  <ng-template #welcomeTmpl>
+    <app-carousel/>
+  </ng-template>
+</div>
