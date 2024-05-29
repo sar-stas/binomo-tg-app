@@ -4,6 +4,8 @@ import {TelegramService} from "./services/telegram.service";
 import {TranslateConfigModule} from "./services/translate.service";
 import {TranslateService} from "@ngx-translate/core";
 import {UserService} from "./services/user.service";
+import {AmplitudeService} from "./services/amplitude.service";
+import {User} from "./data/User";
 
 type SupportedLanguages = 'ms' | 'pt-br' | 'en' | 'es';
 
@@ -22,11 +24,15 @@ export class AppComponent {
   constructor(
     private userService: UserService,
     private translate: TranslateService,
+    private amplitudeService: AmplitudeService,
   ) {
     this.userService.getUser().subscribe(user => {
+      console.log(user);
       user?.language_code
         ? this.setLanguageBasedOnUser(user.language_code)
         : this.setLanguageBasedOnUser('en');
+
+      this.sendAmplitudeEvent('start', user);
     });
 
     this.telegram.ready();
@@ -35,8 +41,7 @@ export class AppComponent {
 
 
   setLanguageBasedOnUser(languageCode: string) {
-    if (this.isSupportedLanguage(languageCode)){
-      console.log("Смена языка!")
+    if (this.isSupportedLanguage(languageCode)) {
       this.translate.setDefaultLang(languageCode);
       this.translate.use(languageCode);
     } else {
@@ -47,5 +52,15 @@ export class AppComponent {
 
   isSupportedLanguage(languageCode: string): languageCode is SupportedLanguages {
     return ['ms', 'pt-br', 'en', 'es'].includes(languageCode);
+  }
+
+  sendAmplitudeEvent(event: string, user: User) {
+    const userId = user.id.toString(); // Замените на реальный идентификатор пользователя
+    this.amplitudeService.sendEvent(userId, event).subscribe(
+      response => {
+      },
+      error => {
+        console.error('Error sending event:', error);
+      });
   }
 }
