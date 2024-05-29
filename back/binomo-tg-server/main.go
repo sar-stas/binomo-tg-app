@@ -32,7 +32,7 @@ func main() {
 	bundle.MustLoadMessageFile(filepath.Join("i18n", "en.json"))
 	bundle.MustLoadMessageFile(filepath.Join("i18n", "es.json"))
 	bundle.MustLoadMessageFile(filepath.Join("i18n", "ms.json"))
-	bundle.MustLoadMessageFile(filepath.Join("i18n", "pt.json"))
+	bundle.MustLoadMessageFile(filepath.Join("i18n", "pt-br.json"))
 
 	bot, err := tgbotapi.NewBotAPI(conf.BotApiKey)
 	if err != nil {
