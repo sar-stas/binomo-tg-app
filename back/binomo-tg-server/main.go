@@ -1,6 +1,7 @@
 package main
 
 import (
+	"binomo-tg-server/analytic"
 	"binomo-tg-server/config"
 	"encoding/json"
 	"github.com/joho/godotenv"
@@ -23,9 +24,9 @@ func init() {
 
 func main() {
 
-	conf := config.New()
+	config.Conf = config.New()
 
-	webApp := tgbotapi.WebAppInfo{conf.WebAppUrl}
+	webApp := tgbotapi.WebAppInfo{config.Conf.WebAppUrl}
 
 	//localization
 	bundle.RegisterUnmarshalFunc("json", json.Unmarshal)
@@ -34,7 +35,7 @@ func main() {
 	bundle.MustLoadMessageFile(filepath.Join("i18n", "ms.json"))
 	bundle.MustLoadMessageFile(filepath.Join("i18n", "pt-br.json"))
 
-	bot, err := tgbotapi.NewBotAPI(conf.BotApiKey)
+	bot, err := tgbotapi.NewBotAPI(config.Conf.BotApiKey)
 	if err != nil {
 		log.Panic(err)
 	}
@@ -86,6 +87,8 @@ func main() {
 				},
 			})
 			msg.ReplyMarkup = getKeyboards(localizer, webApp)
+
+			go analytic.SendAnalyticEvent(update.Message.From.ID, "open_app")
 		default:
 			msg.Text = "I don't know that command"
 		}
