@@ -6,6 +6,7 @@ import {TranslateService} from "@ngx-translate/core";
 import {UserService} from "./services/user.service";
 import {AmplitudeService} from "./services/amplitude.service";
 import {User} from "./data/User";
+import {HttpClient} from "@angular/common/http";
 
 type SupportedLanguages = 'ms' | 'pt-br' | 'en' | 'es';
 
@@ -15,6 +16,10 @@ type SupportedLanguages = 'ms' | 'pt-br' | 'en' | 'es';
   imports: [
     RouterOutlet,
     TranslateConfigModule
+  ],
+  providers: [
+    HttpClient,
+    AmplitudeService
   ],
   templateUrl: './app.component.html',
 })
@@ -55,12 +60,14 @@ export class AppComponent {
   }
 
   sendAmplitudeEvent(event: string, user: User) {
-    const userId = user.id.toString(); // Замените на реальный идентификатор пользователя
-    this.amplitudeService.sendEvent(userId, event).subscribe(
-      response => {
-      },
-      error => {
-        console.error('Error sending event:', error);
-      });
+    const userId = user?.id.toString(); // Замените на реальный идентификатор пользователя
+    if (userId)  {
+      this.amplitudeService.sendEvent(userId, event).subscribe(
+        response => {
+        },
+        error => {
+          console.error('Error sending event:', error);
+        });
+    }
   }
 }
