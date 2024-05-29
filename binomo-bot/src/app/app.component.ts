@@ -5,7 +5,7 @@ import {TranslateConfigModule} from "./services/translate.service";
 import {TranslateService} from "@ngx-translate/core";
 import {UserService} from "./services/user.service";
 
-type SupportedLanguages = 'ms' | 'br' | 'en' | 'es';
+type SupportedLanguages = 'ms' | 'pt-br' | 'en' | 'es';
 
 @Component({
   selector: 'app-root',
@@ -23,25 +23,29 @@ export class AppComponent {
     private userService: UserService,
     private translate: TranslateService,
   ) {
+    this.userService.getUser().subscribe(user => {
+      user?.language_code
+        ? this.setLanguageBasedOnUser(user.language_code)
+        : this.setLanguageBasedOnUser('en');
+    });
+
     this.telegram.ready();
     this.telegram.expand();
-
-    this.userService.getUser().subscribe(user => {
-      this.setLanguageBasedOnUser(user.language_code);
-    });
   }
 
 
   setLanguageBasedOnUser(languageCode: string) {
     if (this.isSupportedLanguage(languageCode)){
+      console.log("Смена языка!")
       this.translate.setDefaultLang(languageCode);
       this.translate.use(languageCode);
     } else {
+      this.translate.setDefaultLang('en');
       this.translate.use('en');
     }
   }
 
   isSupportedLanguage(languageCode: string): languageCode is SupportedLanguages {
-    return ['ms', 'br', 'en', 'es'].includes(languageCode);
+    return ['ms', 'pt-br', 'en', 'es'].includes(languageCode);
   }
 }
