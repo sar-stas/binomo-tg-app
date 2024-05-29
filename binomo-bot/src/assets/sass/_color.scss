@@ -1,9 +1,16 @@
-
+$primary-color: #ffdd3c;
+$primary-bg-color: #1c1c1f;
+$secondary-bg-color: #1D1F2D;
+$text-white: #FFF;
 
 .ts-bg-primary {
-  background: #1c1c1f;
+  background: $primary-bg-color;
 }
 
 .ts-yellow-primary {
-  background: #ffdd3c;
+  background: $primary-color;
+}
+
+.ts-text-white {
+  color: $text-white;
 }

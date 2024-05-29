@@ -1,5 +1,5 @@
-import {Component, ElementRef, HostListener, ViewChild} from '@angular/core';
-import {NgIf} from "@angular/common";
+import {Component, HostListener} from '@angular/core';
+import {NgForOf, NgIf} from "@angular/common";
 import {TranslateModule} from "@ngx-translate/core";
 
 @Component({
@@ -7,13 +7,16 @@ import {TranslateModule} from "@ngx-translate/core";
   standalone: true,
   imports: [
     NgIf,
-    TranslateModule
+    TranslateModule,
+    NgForOf
   ],
   templateUrl: './carousel.component.html',
   styleUrl: './carousel.component.scss'
 })
 export class CarouselComponent {
   public currentSlide = 0;
+
+  rating = [1, 1, 1, 1, 1];
 
   @HostListener('swipeleft', ['$event'])
   onSwipeLeft(event: any) {

@@ -1,3 +1,5 @@
+@import '../../../assets/sass/style';
+
 .sub-title {
   font-weight: 700;
   font-size: 24px;
@@ -33,7 +35,7 @@
   padding: 13px 20px;
   width: 342px;
   height: 48px;
-  background: #ffdd3c;
+  background: $primary-color;
   font-weight: 600;
 }
 
@@ -94,5 +96,17 @@
   &-container {
 
   }
+}
+
+.comment-block {
+  border: 2px solid $primary-color;
+  border-radius: 20px;
+  padding: 16px;
+  width: 291px;
+  height: 136px;
+  background-color: $secondary-bg-color;
+
+  position: absolute;
+  top: 37%;
 }
 

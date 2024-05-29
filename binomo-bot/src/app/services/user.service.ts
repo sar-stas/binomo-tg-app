@@ -11,6 +11,7 @@ export class UserService {
 
   getUser(): Observable<User> {
     const user = this.telegramService.tg.initDataUnsafe?.user;
+
     return of(user);
   }
 }
