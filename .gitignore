@@ -65,4 +65,4 @@ bower_components
 .yarn-integrity
 
 # dotenv environment variables file
-.env
+*/.env
