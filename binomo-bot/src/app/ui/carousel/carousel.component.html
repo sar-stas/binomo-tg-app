@@ -1,122 +1,114 @@
 <!--1 Page-->
-<div *ngIf="currentSlide === 0" class="wrapper">
-  <h3 class="sub-title text-center">{{ 'TITLE-1' | translate }}</h3>
-  <span class="about-us-text"> {{ 'DESCRIPTION-1' | translate }}</span>
+<ng-container *ngIf="lang$ | async as lang">
+  <div *ngIf="currentSlide === 0" class="wrapper">
+    <h3 class="sub-title text-center">{{ 'TITLE-1' | translate }}</h3>
+    <span class="about-us-text"> {{ 'DESCRIPTION-1' | translate }}</span>
 
-  <div class="container-img mt-3">
-    <img width="291" src="assets/img/welcome1.png" alt="mobile-binomo-app">
+    <div class="container-img mt-5">
+      <img class="mt-4" width="291" [src]="'../../../assets/img/' + lang + '/slide-1.png'" alt="mobile-binomo-app">
 
-    <div class="container-btn absolute">
-      <div class="pagination">
-        <svg width="11" height="11">
-          <use xlink:href="/assets/img/icon.svg#circle-yellow"></use>
-        </svg>
-        <svg width="11" height="11">
-          <use xlink:href="/assets/img/icon.svg#circle-grey"></use>
-        </svg>
-        <svg width="11" height="11">
-          <use xlink:href="/assets/img/icon.svg#circle-grey"></use>
-        </svg>
-      </div>
-
-      <button class="btn" (click)="nextSlide()">{{ 'NEXT' | translate }}</button>
-    </div>
-
-  </div>
-</div>
-
-<!--2 Page-->
-<div *ngIf="currentSlide === 1" class="wrapper">
-  <h3 class="sub-title text-center">{{ 'TITLE-2' | translate }}</h3>
-  <span class="about-us-text"> {{ 'DESCRIPTION-2' | translate }}</span>
-
-  <div class="container-img mt-3">
-    <div class="comment-block d-flex gap-3">
-      <img src="assets/img/ava-comment.png" width="63" height="63" alt="avatar">
-      <div class="d-flex flex-column">
-        <div class="rating d-flex gap-1 mb-1">
-          <svg *ngFor="let i of rating" width="16" height="16">
-            <use xlink:href="/assets/img/icon.svg#star"></use>
+      <div class="container-btn absolute">
+        <div class="pagination">
+          <svg width="11" height="11">
+            <use xlink:href="/assets/img/icon.svg#circle-yellow"></use>
+          </svg>
+          <svg width="11" height="11">
+            <use xlink:href="/assets/img/icon.svg#circle-grey"></use>
+          </svg>
+          <svg width="11" height="11">
+            <use xlink:href="/assets/img/icon.svg#circle-grey"></use>
           </svg>
         </div>
-        <span class="ts-text-white">{{ 'COMMENT' | translate }}</span>
-      </div>
-    </div>
 
-    <img width="291" src="assets/img/welcome2.png" alt="mobile-binomo-app">
-
-    <div class="container-btn absolute">
-      <div class="pagination">
-        <svg width="11" height="11">
-          <use xlink:href="/assets/img/icon.svg#circle-grey"></use>
-        </svg>
-        <svg width="11" height="11">
-          <use xlink:href="/assets/img/icon.svg#circle-yellow"></use>
-        </svg>
-        <svg width="11" height="11">
-          <use xlink:href="/assets/img/icon.svg#circle-grey"></use>
-        </svg>
+        <button class="btn" (click)="nextSlide()">{{ 'NEXT' | translate }}</button>
       </div>
 
-      <button class="btn" (click)="nextSlide()">{{ 'NEXT' | translate }}</button>
-    </div>
-
-  </div>
-</div>
-
-<!--3 Page-->
-<div *ngIf="currentSlide === 2" class="wrapper">
-  <div class="container-img">
-
-    <div class="d-flex flex-column step-container" style="height: 291px">
-      <div class="step">
-        <svg width="51" height="51">
-          <use xlink:href="/assets/img/icon.svg#1-step"></use>
-        </svg>
-
-        <div class="step__content">
-          <h3 class="step__sub-title">{{ "STEP-1" | translate}}</h3>
-          <span class="about-us-text">{{ "CONTENT-1" | translate }}</span>
-        </div>
-      </div>
-
-      <div class="step">
-        <svg width="51" height="51">
-          <use xlink:href="/assets/img/icon.svg#2-step"></use>
-        </svg>
-
-        <div class="step__content">
-          <h3 class="step__sub-title">{{ "STEP-2" | translate}}</h3>
-          <span class="about-us-text">{{ "CONTENT-2" | translate }}</span>
-        </div>
-      </div>
-
-      <div class="step">
-        <svg width="51" height="51">
-          <use xlink:href="/assets/img/icon.svg#3-step"></use>
-        </svg>
-        <div class="step__content">
-          <h3 class="step__sub-title">{{ "STEP-3" | translate}}</h3>
-          <span class="about-us-text">{{ "CONTENT-3" | translate }}</span>
-        </div>
-      </div>
-    </div>
-
-
-    <div class="container-btn absolute">
-      <div class="pagination">
-        <svg width="11" height="11">
-          <use xlink:href="/assets/img/icon.svg#circle-grey"></use>
-        </svg>
-        <svg width="11" height="11">
-          <use xlink:href="/assets/img/icon.svg#circle-grey"></use>
-        </svg>
-        <svg width="11" height="11">
-          <use xlink:href="/assets/img/icon.svg#circle-yellow"></use>
-        </svg>
-      </div>
-
-      <button class="btn" (click)="nextSlide()">{{ "START" | translate }}</button>
     </div>
   </div>
-</div>
+
+  <!--2 Page-->
+  <div *ngIf="currentSlide === 1" class="wrapper">
+    <h3 class="sub-title text-center">{{ 'TITLE-2' | translate }}</h3>
+    <span class="about-us-text"> {{ 'DESCRIPTION-2' | translate }}</span>
+
+    <div class="container-img mt-3">
+
+      <img style="margin-top: 70px" width="291" [src]="'../../../assets/img/' + lang + '/slide-2.png'" alt="mobile-binomo-app">
+
+      <div class="container-btn absolute">
+        <div class="pagination">
+          <svg width="11" height="11">
+            <use xlink:href="/assets/img/icon.svg#circle-grey"></use>
+          </svg>
+          <svg width="11" height="11">
+            <use xlink:href="/assets/img/icon.svg#circle-yellow"></use>
+          </svg>
+          <svg width="11" height="11">
+            <use xlink:href="/assets/img/icon.svg#circle-grey"></use>
+          </svg>
+        </div>
+
+        <button class="btn" (click)="nextSlide()">{{ 'NEXT' | translate }}</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!--3 Page-->
+  <div *ngIf="currentSlide === 2" class="wrapper">
+    <div class="container-img">
+
+      <div class="d-flex flex-column step-container" style="height: 291px">
+        <div class="step">
+          <svg width="51" height="51">
+            <use xlink:href="/assets/img/icon.svg#1-step"></use>
+          </svg>
+
+          <div class="step__content">
+            <h3 class="step__sub-title">{{ "STEP-1" | translate}}</h3>
+            <span class="about-us-text">{{ "CONTENT-1" | translate }}</span>
+          </div>
+        </div>
+
+        <div class="step">
+          <svg width="51" height="51">
+            <use xlink:href="/assets/img/icon.svg#2-step"></use>
+          </svg>
+
+          <div class="step__content">
+            <h3 class="step__sub-title">{{ "STEP-2" | translate}}</h3>
+            <span class="about-us-text">{{ "CONTENT-2" | translate }}</span>
+          </div>
+        </div>
+
+        <div class="step">
+          <svg width="51" height="51">
+            <use xlink:href="/assets/img/icon.svg#3-step"></use>
+          </svg>
+          <div class="step__content">
+            <h3 class="step__sub-title">{{ "STEP-3" | translate}}</h3>
+            <span class="about-us-text">{{ "CONTENT-3" | translate }}</span>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="container-btn absolute">
+        <div class="pagination">
+          <svg width="11" height="11">
+            <use xlink:href="/assets/img/icon.svg#circle-grey"></use>
+          </svg>
+          <svg width="11" height="11">
+            <use xlink:href="/assets/img/icon.svg#circle-grey"></use>
+          </svg>
+          <svg width="11" height="11">
+            <use xlink:href="/assets/img/icon.svg#circle-yellow"></use>
+          </svg>
+        </div>
+
+        <button class="btn" (click)="nextSlide()">{{ "START" }}</button>
+      </div>
+    </div>
+  </div>
+</ng-container>
+

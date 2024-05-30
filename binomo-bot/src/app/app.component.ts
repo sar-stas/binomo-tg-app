@@ -36,8 +36,6 @@ export class AppComponent {
       user?.language_code
         ? this.setLanguageBasedOnUser(user.language_code)
         : this.setLanguageBasedOnUser('en');
-
-      this.sendAmplitudeEvent('start', user);
     });
 
     this.telegram.ready();
@@ -46,7 +44,8 @@ export class AppComponent {
 
 
   setLanguageBasedOnUser(languageCode: string) {
-    if (this.isSupportedLanguage(languageCode)) {
+    if (this.isSupportedLanguage(languageCode)){
+      console.log("Смена языка!")
       this.translate.setDefaultLang(languageCode);
       this.translate.use(languageCode);
     } else {

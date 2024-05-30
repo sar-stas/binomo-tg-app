@@ -1,6 +1,8 @@
 import {Component, HostListener} from '@angular/core';
-import {NgForOf, NgIf} from "@angular/common";
+import {AsyncPipe, NgForOf, NgIf} from "@angular/common";
 import {TranslateModule} from "@ngx-translate/core";
+import {UserService} from "../../services/user.service";
+import {map} from "rxjs";
 
 @Component({
   selector: 'app-carousel',
@@ -8,7 +10,8 @@ import {TranslateModule} from "@ngx-translate/core";
   imports: [
     NgIf,
     TranslateModule,
-    NgForOf
+    NgForOf,
+    AsyncPipe
   ],
   templateUrl: './carousel.component.html',
   styleUrl: './carousel.component.scss'
@@ -18,6 +21,8 @@ export class CarouselComponent {
 
   rating = [1, 1, 1, 1, 1];
 
+  public lang$ = this.userService.userLang$.pipe(map((user) => user));
+
   @HostListener('swipeleft', ['$event'])
   onSwipeLeft(event: any) {
     this.nextSlide();
@@ -26,6 +31,11 @@ export class CarouselComponent {
   @HostListener('swiperight', ['$event'])
   onSwipeRight(event: any) {
     this.previousSlide();
+  }
+
+  constructor(
+    private userService: UserService
+  ) {
   }
 
   nextSlide() {
