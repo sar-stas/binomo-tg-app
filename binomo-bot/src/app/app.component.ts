@@ -20,7 +20,8 @@ import {IS_ONBOARDING_PASSED} from "./data/constants";
   ],
   providers: [
     HttpClient,
-    AmplitudeService
+    AmplitudeService,
+    LocalStorageService
   ],
   templateUrl: './app.component.html',
 })
