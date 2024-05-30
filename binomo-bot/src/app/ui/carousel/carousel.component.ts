@@ -3,6 +3,8 @@ import {AsyncPipe, NgForOf, NgIf} from "@angular/common";
 import {TranslateModule} from "@ngx-translate/core";
 import {UserService} from "../../services/user.service";
 import {map} from "rxjs";
+import {LocalStorageService} from "../../services/storage.service";
+import {IS_ONBOARDING_PASSED} from "../../data/constants";
 
 @Component({
   selector: 'app-carousel',
@@ -19,22 +21,11 @@ import {map} from "rxjs";
 export class CarouselComponent {
   public currentSlide = 0;
 
-  rating = [1, 1, 1, 1, 1];
-
   public lang$ = this.userService.userLang$.pipe(map((user) => user));
 
-  @HostListener('swipeleft', ['$event'])
-  onSwipeLeft(event: any) {
-    this.nextSlide();
-  }
-
-  @HostListener('swiperight', ['$event'])
-  onSwipeRight(event: any) {
-    this.previousSlide();
-  }
-
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private localStorageService: LocalStorageService,
   ) {
   }
 
@@ -43,6 +34,7 @@ export class CarouselComponent {
       this.currentSlide += 1
     } else {
       window.location.href = 'https://binomo.com/auth?a=fa974b326c30&i=#SignUp';
+      this.localStorageService.set(IS_ONBOARDING_PASSED, 'true')
     }
   }
 

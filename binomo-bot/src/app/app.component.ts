@@ -8,6 +8,8 @@ import {AmplitudeService} from "./services/amplitude.service";
 import {User} from "./data/user";
 import {HttpClient} from "@angular/common/http";
 import {SupportedLanguages} from "./data/languages";
+import {LocalStorageService} from "./services/storage.service";
+import {IS_ONBOARDING_PASSED} from "./data/constants";
 
 @Component({
   selector: 'app-root',
@@ -29,6 +31,7 @@ export class AppComponent {
     private userService: UserService,
     private translate: TranslateService,
     private amplitudeService: AmplitudeService,
+    private localStorageService: LocalStorageService,
   ) {
     this.userService.getUser().subscribe(user => {
       console.log(user);
@@ -38,6 +41,11 @@ export class AppComponent {
 
       this.sendAmplitudeEvent('start', user);
     });
+
+    const isOnboardingPassed = this.localStorageService.get(IS_ONBOARDING_PASSED);
+    if(isOnboardingPassed) {
+      window.location.href = 'https://binomo.com/auth?a=fa974b326c30&i=#SignUp';
+    }
 
     this.telegram.ready();
     this.telegram.expand();
