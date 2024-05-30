@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {BehaviorSubject, Observable, of, Subject} from 'rxjs';
 import { TelegramService } from './telegram.service';
-import {User} from "../data/User";
+import {User} from "../data/user";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,11 @@ export class UserService {
 
   getUser(): Observable<User> {
     const user = this.telegramService.tg.initDataUnsafe?.user;
-    this.userLang$.next(user?.language_code ?? 'en');
+    if(['ms', 'pt-br', 'en', 'es'].includes(user?.language_code)) {
+      console.log('установка языка - ', user?.language_code);
+      this.userLang$.next(user?.language_code ?? 'en');
+    }
+
     return of(user);
   }
 }

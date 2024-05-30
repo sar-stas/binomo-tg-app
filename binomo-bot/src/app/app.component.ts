@@ -5,10 +5,9 @@ import {TranslateConfigModule} from "./services/translate.service";
 import {TranslateService} from "@ngx-translate/core";
 import {UserService} from "./services/user.service";
 import {AmplitudeService} from "./services/amplitude.service";
-import {User} from "./data/User";
+import {User} from "./data/user";
 import {HttpClient} from "@angular/common/http";
-
-type SupportedLanguages = 'ms' | 'pt-br' | 'en' | 'es';
+import {SupportedLanguages} from "./data/languages";
 
 @Component({
   selector: 'app-root',
@@ -36,6 +35,8 @@ export class AppComponent {
       user?.language_code
         ? this.setLanguageBasedOnUser(user.language_code)
         : this.setLanguageBasedOnUser('en');
+
+      this.sendAmplitudeEvent('start', user);
     });
 
     this.telegram.ready();
