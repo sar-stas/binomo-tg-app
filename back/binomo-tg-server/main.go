@@ -126,8 +126,11 @@ func getKeyboards(localizer *i18n.Localizer, webApp tgbotapi.WebAppInfo) tgbotap
 			tgbotapi.NewInlineKeyboardButtonWebApp(
 				btnStartTraiding, webApp,
 			),
+		),
+		tgbotapi.NewInlineKeyboardRow(
 			tgbotapi.NewInlineKeyboardButtonData(
 				btnDescription, "description_trading",
 			),
-		))
+		),
+	)
 }
