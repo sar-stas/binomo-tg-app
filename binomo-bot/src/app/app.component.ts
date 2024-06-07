@@ -10,6 +10,7 @@ import {HttpClient} from "@angular/common/http";
 import {SupportedLanguages} from "./data/languages";
 import {LocalStorageService} from "./services/storage.service";
 import {IS_ONBOARDING_PASSED} from "./data/constants";
+import { GoogleAnalyticsService } from "./services/google-analytics.service";
 
 @Component({
   selector: 'app-root',
@@ -21,7 +22,8 @@ import {IS_ONBOARDING_PASSED} from "./data/constants";
   providers: [
     HttpClient,
     AmplitudeService,
-    LocalStorageService
+    LocalStorageService,
+    GoogleAnalyticsService
   ],
   templateUrl: './app.component.html',
 })
@@ -33,19 +35,21 @@ export class AppComponent {
     private translate: TranslateService,
     private amplitudeService: AmplitudeService,
     private localStorageService: LocalStorageService,
+    private googleAnalyticsService: GoogleAnalyticsService,
   ) {
     this.userService.getUser().subscribe(user => {
-      console.log(user);
       user?.language_code
         ? this.setLanguageBasedOnUser(user.language_code)
         : this.setLanguageBasedOnUser('en');
+
+      this.googleAnalyticsService.start();
 
       this.sendAmplitudeEvent('start', user);
     });
 
     const isOnboardingPassed = this.localStorageService.get(IS_ONBOARDING_PASSED);
     if(isOnboardingPassed) {
-      window.location.href = 'https://binomo.com/auth?a=fa974b326c30&i=#SignUp';
+    //   window.location.href = 'https://binomo.com/auth?a=fa974b326c30&i=#SignUp';
     }
 
     this.telegram.ready();
@@ -55,7 +59,6 @@ export class AppComponent {
 
   setLanguageBasedOnUser(languageCode: string) {
     if (this.isSupportedLanguage(languageCode)){
-      console.log("Смена языка!")
       this.translate.setDefaultLang(languageCode);
       this.translate.use(languageCode);
     } else {
@@ -69,7 +72,7 @@ export class AppComponent {
   }
 
   sendAmplitudeEvent(event: string, user: User) {
-    const userId = user?.id.toString(); // Замените на реальный идентификатор пользователя
+    const userId = user?.id.toString();
     if (userId)  {
       this.amplitudeService.sendEvent(userId, event).subscribe(
         response => {

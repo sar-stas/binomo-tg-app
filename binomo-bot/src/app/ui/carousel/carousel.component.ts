@@ -5,6 +5,7 @@ import {UserService} from "../../services/user.service";
 import {map} from "rxjs";
 import {LocalStorageService} from "../../services/storage.service";
 import {IS_ONBOARDING_PASSED} from "../../data/constants";
+import { GoogleAnalyticsService } from "../../services/google-analytics.service";
 
 @Component({
   selector: 'app-carousel',
@@ -26,15 +27,17 @@ export class CarouselComponent {
   constructor(
     private userService: UserService,
     private localStorageService: LocalStorageService,
+    private googleAnalyticsService: GoogleAnalyticsService,
   ) {
   }
 
   nextSlide() {
     if(this.currentSlide !== 2) {
-      this.currentSlide += 1
+      this.currentSlide += 1;
     } else {
       window.location.href = 'https://binomo.com/auth?a=fa974b326c30&i=#SignUp';
-      this.localStorageService.set(IS_ONBOARDING_PASSED, 'true')
+      this.localStorageService.set(IS_ONBOARDING_PASSED, 'true');
+      this.googleAnalyticsService.finish();
     }
   }
 
