@@ -64,6 +64,18 @@ func main() {
 				},
 			})
 			msg := tgbotapi.NewMessage(update.CallbackQuery.Message.Chat.ID, descriptionTradingTxt)
+			msg.ReplyMarkup = tgbotapi.NewInlineKeyboardMarkup(
+				tgbotapi.NewInlineKeyboardRow(
+					tgbotapi.NewInlineKeyboardButtonWebApp(
+						localizer.MustLocalize(&i18n.LocalizeConfig{
+							DefaultMessage: &i18n.Message{
+								ID: "btn_start_trading",
+							},
+						}),
+						webApp,
+					),
+				),
+			)
 			if _, err := bot.Send(msg); err != nil {
 				log.Panic(err)
 			}
@@ -126,8 +138,11 @@ func getKeyboards(localizer *i18n.Localizer, webApp tgbotapi.WebAppInfo) tgbotap
 			tgbotapi.NewInlineKeyboardButtonWebApp(
 				btnStartTraiding, webApp,
 			),
+		),
+		tgbotapi.NewInlineKeyboardRow(
 			tgbotapi.NewInlineKeyboardButtonData(
 				btnDescription, "description_trading",
 			),
-		))
+		),
+	)
 }
