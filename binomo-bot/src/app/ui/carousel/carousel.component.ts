@@ -40,8 +40,4 @@ export class CarouselComponent {
       this.googleAnalyticsService.finish();
     }
   }
-
-  previousSlide() {
-    this.currentSlide = (this.currentSlide - 1 + 3) % 3; // Обеспечивает цикличность карусели
-  }
 }

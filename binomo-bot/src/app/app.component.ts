@@ -49,7 +49,7 @@ export class AppComponent {
 
     const isOnboardingPassed = this.localStorageService.get(IS_ONBOARDING_PASSED);
     if(isOnboardingPassed) {
-    //   window.location.href = 'https://binomo.com/auth?a=fa974b326c30&i=#SignUp';
+      window.location.href = 'https://binomo.com/auth?a=fa974b326c30&i=#SignUp';
     }
 
     this.telegram.ready();
