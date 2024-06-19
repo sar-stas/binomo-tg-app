@@ -64,6 +64,7 @@ func main() {
 				},
 			})
 			msg := tgbotapi.NewMessage(update.CallbackQuery.Message.Chat.ID, descriptionTradingTxt)
+			msg.ParseMode = tgbotapi.ModeMarkdown
 			msg.ReplyMarkup = tgbotapi.NewInlineKeyboardMarkup(
 				tgbotapi.NewInlineKeyboardRow(
 					tgbotapi.NewInlineKeyboardButtonWebApp(
@@ -115,7 +116,9 @@ func determineLocale(update tgbotapi.Update) *i18n.Localizer {
 	if update.Message != nil {
 		return i18n.NewLocalizer(bundle, update.Message.From.LanguageCode)
 	}
-
+	if update.CallbackQuery != nil {
+		return i18n.NewLocalizer(bundle, update.CallbackQuery.From.LanguageCode)
+	}
 	return i18n.NewLocalizer(bundle, "en")
 }
 
