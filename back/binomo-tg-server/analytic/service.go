@@ -19,6 +19,7 @@ func SendAnalyticEvent(userId int64, eventType string) {
 			{
 				DeviceID:  userId,
 				EventType: eventType,
+				Name:      "binomo_off_app",
 			},
 		},
 	}
