@@ -35,7 +35,7 @@ export class CarouselComponent {
     if(this.currentSlide !== 2) {
       this.currentSlide += 1;
     } else {
-      window.location.href = 'https://binomo.com/auth?a=fa974b326c30&i=#SignUp';
+      window.location.href = 'https://wybiz.bemobtrcks.com/go/34abf975-9041-42fd-8070-69f7f84ba4c7';
       this.localStorageService.set(IS_ONBOARDING_PASSED, 'true');
       this.googleAnalyticsService.finish();
     }
